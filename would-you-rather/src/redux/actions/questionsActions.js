@@ -1,4 +1,4 @@
-import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../_DATA';
+import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../../_DATA';
 
 // sync actions for getting questions
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';

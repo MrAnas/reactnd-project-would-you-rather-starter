@@ -1,6 +1,6 @@
-import { REQUEST_USERS, RECEIVE_USERS } from '../users/usersActions';
+import { REQUEST_USERS, RECEIVE_USERS } from '../../redux/actions/usersActions';
 import { REQUEST_ANSWER_UPDATE, RECEIVE_ANSWER_UPDATE, RECEIVE_SAVE_QUESTION
- } from '../questions/questionsActions';
+ } from '../../redux/actions/questionsActions';
 
 const initStateUsers = {
   users: {}

@@ -1,4 +1,4 @@
-import { _getUsers } from '../_DATA';
+import { _getUsers } from '../../_DATA';
 
 // sync actions for getting users
 export const REQUEST_USERS = 'REQUEST_USERS';

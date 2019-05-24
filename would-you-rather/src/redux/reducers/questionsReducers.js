@@ -1,6 +1,6 @@
 import { REQUEST_QUESTIONS, RECEIVE_QUESTIONS, REQUEST_ANSWER_UPDATE,
 RECEIVE_ANSWER_UPDATE, REQUEST_SAVE_QUESTION, RECEIVE_SAVE_QUESTION
- } from '../questions/questionsActions';
+ } from '../../redux/actions/questionsActions';
 
 const initStateQuestions = {
   questions: {}

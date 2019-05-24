@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../App.css';
-import { fetchQuestions, updateAnswer } from '../questions/questionsActions';
+import { fetchQuestions, updateAnswer } from '../redux/actions/questionsActions';
 import { getPercentVoted } from '../utilities/utilities';
 
 

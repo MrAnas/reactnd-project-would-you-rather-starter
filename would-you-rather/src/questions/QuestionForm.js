@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../App.css';
-import { saveQuestion } from '../questions/questionsActions';
+import { saveQuestion } from '../redux/actions/questionsActions';
 
 export class QuestionForm extends Component {
   constructor(props) {

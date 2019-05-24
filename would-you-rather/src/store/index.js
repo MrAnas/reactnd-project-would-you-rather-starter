@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { login } from '../login/loginReducers';
-import { users } from '../users/usersReducers';
-import { questions } from '../questions/questionsReducers';
+import { login } from '../redux/reducers/loginReducers';
+import { users } from '../redux/reducers/usersReducers';
+import { questions } from '../redux/reducers/questionsReducers';
 
 export default combineReducers({
   login,

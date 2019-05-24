@@ -4,9 +4,9 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.css';
-import { receiveLogin, receiveLogout } from './login/loginActions';
-import { fetchUsers } from './users/usersActions';
-import { fetchQuestions } from './questions/questionsActions';
+import { receiveLogin, receiveLogout } from './redux/actions/loginActions';
+import { fetchUsers } from './redux/actions/usersActions';
+import { fetchQuestions } from './redux/actions/questionsActions';
 import Questions from './questions/Questions';
 import QuestionDetail from './questions/QuestionDetail';
 import QuestionForm from './questions/QuestionForm';

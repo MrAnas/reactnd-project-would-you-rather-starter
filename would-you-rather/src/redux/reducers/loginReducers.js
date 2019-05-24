@@ -1,4 +1,4 @@
-import { RECEIVE_LOGIN, RECEIVE_LOGOUT } from '../login/loginActions';
+import { RECEIVE_LOGIN, RECEIVE_LOGOUT } from '../actions/loginActions';
 
 const initStateLogin = {
   isLoggedIn: false,
