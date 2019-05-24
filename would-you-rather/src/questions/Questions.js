@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import '../App.css';
 import { getArFromDict, sortByPropertyDesc, getPrettyQuestion,
   getUnansweredQuestions } from '../utilities/utilities';
@@ -25,7 +24,7 @@ class Questions extends Component {
   }
 
   render() {
-    const {userQuestions, userAnswers, isLoggedIn, questions} = this.props;
+    const {userAnswers, isLoggedIn, questions} = this.props;
     let questionsArSorted;
     let questionsAr;
 
@@ -37,7 +36,6 @@ class Questions extends Component {
     // list of question id's
     let questionsDisplay = [];
     let questionsDisplaySorted = [];
-    let questionsDisplayObjectsSorted = [];
 
     // filter for unanswered questions
     if (userAnswers && questions && this.state.questionType === "unanswered") {
@@ -62,7 +60,7 @@ class Questions extends Component {
 
     return (
       <div className="">
-        <h1>Questions</h1>
+        <h1 class="text-primary mb-2">Questions</h1>
         {isLoggedIn && (
           <div>
             <label> 

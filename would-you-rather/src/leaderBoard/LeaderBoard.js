@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import { getArFromDict, sortByAnswersCount } from '../utilities/utilities';
 
-export class LeaderBoard extends Component {
-  constructor(props) {
-    super(props);
-  }
+export class Leaderboard extends Component {
 
   render() {
     const {login, users} = this.props;
@@ -26,7 +22,7 @@ export class LeaderBoard extends Component {
 
     return (
       <div className="">
-        <h1>Leader Board</h1>
+        <h1 class="text-primary">Leaderboard</h1>
         <div className="spacer-sm"></div>
         <div className="row row-circle">
           {isLoggedIn && (
@@ -61,4 +57,4 @@ function mapStateToProps({ login, users }) {
   }
 }
 
-export default connect(mapStateToProps)(LeaderBoard);
+export default connect(mapStateToProps)(Leaderboard);

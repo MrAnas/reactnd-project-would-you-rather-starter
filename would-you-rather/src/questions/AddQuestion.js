@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../App.css';
 import { saveQuestion } from '../redux/actions/questionsActions';
 
-export class QuestionForm extends Component {
+export class AddQuestion extends Component {
   constructor(props) {
     super(props);
 
@@ -52,7 +52,7 @@ export class QuestionForm extends Component {
 
     return (
       <div className="">
-        <h1>Add a Question</h1>
+        <h1 class="text-primary">Add a Question</h1>
 
         {isLoggedIn && (
           <form className="question-form">
@@ -90,4 +90,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ saveQuestion }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

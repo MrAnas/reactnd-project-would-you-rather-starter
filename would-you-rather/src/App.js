@@ -9,8 +9,8 @@ import { fetchUsers } from './redux/actions/usersActions';
 import { fetchQuestions } from './redux/actions/questionsActions';
 import Questions from './questions/Questions';
 import QuestionDetail from './questions/QuestionDetail';
-import QuestionForm from './questions/QuestionForm';
-import LeaderBoard from './leaderBoard/LeaderBoard';
+import AddQuestion from './questions/AddQuestion';
+import Leaderboard from './leaderboard/Leaderboard';
 import Error from './Error';
 import { getArFromDict } from './utilities/utilities';
 
@@ -52,7 +52,6 @@ export class App extends Component {
   render() {
     let isLoggedIn;
     let userDictionary;
-    let curUserId;
     let curUser;
     let userAr;
     let questionDictionary;
@@ -82,8 +81,8 @@ export class App extends Component {
 
     return (
       <Router>
-        <div className="App">
-          <nav className="navbar navbar-expand-lg navbar-light bg-blue">
+        <div className="App d-flex">
+          <nav className="navbar d-flex flex-column navbar-expand-lg navbar-light bg-primary">
             <Link to="/" className="navbar-brand header-main">WOULD YOU RATHER</Link>
 
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +90,7 @@ export class App extends Component {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav mr-auto">
+              <ul className="navbar-nav d-flex flex-column mr-auto">
                 <li className="nav-item">
                   <Link to="/" className="nav-link">Questions</Link>
                 </li>
@@ -99,7 +98,7 @@ export class App extends Component {
                   <Link to="/add" className="nav-link">New Question</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/leaderboard" className="nav-link">Leader Board</Link>
+                  <Link to="/Leaderboard" className="nav-link">Leader Board</Link>
                 </li>
 
                 {isLoggedIn === false && (
@@ -126,7 +125,7 @@ export class App extends Component {
           </nav>
 
 
-          <main>
+          <main className="flex-grow-1 container">
             <Route exact path="/" render={() => (
                 <Questions isLoggedIn={isLoggedIn} 
                   userQuestions={userQuestions} 
@@ -140,11 +139,11 @@ export class App extends Component {
               )}
             />
             <Route exact path="/add" render={() => (
-                <QuestionForm />
+                <AddQuestion />
               )}
             />
-            <Route exact path="/leaderboard" render={() => (
-                <LeaderBoard />
+            <Route exact path="/Leaderboard" render={() => (
+                <Leaderboard />
               )}
             />
             <Route exact path="/404" render={() => (
@@ -153,11 +152,6 @@ export class App extends Component {
             />
           </main>
 
-          <footer className="footer">
-            <div className="container">
-              <p className="text-muted">Made with 🌮 by <a href="https://github.com/cch5ng" target="_blank" className="footer-link">cch5ng</a> | <a href="https://github.com/cch5ng/reactnd-project-would-you-rather-starter" target="_blank" className="footer-link">Source</a></p>
-            </div>
-          </footer>
         </div>
       </Router>
     );
