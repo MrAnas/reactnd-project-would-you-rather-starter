@@ -7,7 +7,7 @@ import { fetchQuestions, updateAnswer } from '../redux/actions/questionsActions'
 import { getPercentVoted } from '../utilities/utilities';
 
 
-export class QuestionDetail extends Component {
+export class Question extends Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +30,7 @@ export class QuestionDetail extends Component {
   render() {
     const {login, questions, match, userDictionary} = this.props;
     const qid = match.params.question_id;
-    let isLoggedIn;
+    let isLoggedin;
     let loggedInId;
     let question;
     let questionAnswered = false;
@@ -46,8 +46,8 @@ export class QuestionDetail extends Component {
     let questionClass1 = 'question-answered'
     let questionClass2 = 'question-answered'
 
-    if (login && login.isLoggedIn) {
-      isLoggedIn = login.isLoggedIn;
+    if (login && login.isLoggedin) {
+      isLoggedin = login.isLoggedin;
       loggedInId = login.loggedInId;
     }
 
@@ -67,7 +67,7 @@ export class QuestionDetail extends Component {
       }
     }
 
-    if (isLoggedIn && question) {
+    if (isLoggedin && question) {
       let userAnsweredQuestions = Object.keys(userDictionary[loggedInId]['answers']);
       if (userAnsweredQuestions.indexOf(qid) > -1) {
         questionAnswered = true;
@@ -83,45 +83,45 @@ export class QuestionDetail extends Component {
     }
 
     return (
-      <div className="">
-        {isLoggedIn && questionAnswered && (
+      <div class="">
+        {isLoggedin && questionAnswered && (
           <div>
             <h1>Users Answered</h1>
-            <p><img src={avatarUrl} alt="user avatar" className="avatar" /></p>
-            <div className="row">
-              <div className={questionClass1}>
+            <p><img src={avatarUrl} alt="user avatar" class="avatar" /></p>
+            <div class="row">
+              <div class={questionClass1}>
                 <p>1: {option1Text}</p>
-                <div className="row row-circle">
-                  <div className="vote-circle">{option1Votes} votes</div>
-                  <div className="vote-circle">{option1VotePercent} % voted</div>
+                <div class="row row-circle">
+                  <div class="vote-circle">{option1Votes} votes</div>
+                  <div class="vote-circle">{option1VotePercent} % voted</div>
                 </div>
               </div>
-              <div className={questionClass2}>
+              <div class={questionClass2}>
                 <p>2: {option2Text}</p>
-                <div className="row row-circle">
-                  <div className="vote-circle">{option2Votes} votes</div>
-                  <div className="vote-circle">{option2VotePercent} % voted</div>
+                <div class="row row-circle">
+                  <div class="vote-circle">{option2Votes} votes</div>
+                  <div class="vote-circle">{option2VotePercent} % voted</div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {isLoggedIn && !questionAnswered && (
+        {isLoggedin && !questionAnswered && (
           <div>
-            <h1><img src={avatarUrl} alt="user avatar" className="avatar" /> Would You Rather?</h1>
-            <div className="row">
-              <p id="optionOne" className="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>1: {option1Text}</p>
-              <p id="optionTwo" className="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>2: {option2Text}</p>
+            <h1><img src={avatarUrl} alt="user avatar" class="avatar" /> Would You Rather?</h1>
+            <div class="row">
+              <p id="optionOne" class="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>1: {option1Text}</p>
+              <p id="optionTwo" class="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>2: {option2Text}</p>
             </div>
           </div>
         )}
 
-        {isLoggedIn && !question && (
+        {isLoggedin && !question && (
           <Redirect to="/404" />
         )}
 
-        {!isLoggedIn && (
+        {!isLoggedin && (
           <div>Sorry, you need to log in to view this question.</div>
         )}
 
@@ -141,4 +141,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchQuestions, updateAnswer }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

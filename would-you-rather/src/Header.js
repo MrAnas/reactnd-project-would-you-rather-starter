@@ -8,7 +8,7 @@ class Nav extends Component {
 
     this.state = {
       loginUser: '',
-      isLoggedIn: false
+      isLoggedin: false
     }
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -18,20 +18,15 @@ class Nav extends Component {
     let value = ev.target.value;
     let stateChange = {};
     stateChange[ev.target.name] = value;
-    this.setState(stateChange, function() {
-      if (this.state.loginUser.length) {
-        // change state to logged in
-        console.log('user is logged in');
-      }
-    });
+    this.setState(stateChange);
   }
 
   render() {
-    //const post = this.props.post
+
     return (
-      <div className="header title">
-        <div className="header-main">
-          <h2><Link to="/" className="header-main">Would You Rather</Link></h2>
+      <div class="header title">
+        <div class="header-main">
+          <h2><Link to="/" class="header-main">Would You Rather</Link></h2>
           <select value={this.state.loginUser} onChange={this.onChangeHandler} name="loginUser">
             <option value="">Login</option>
             <option value="sarahedo">Sarah Edo</option>
@@ -39,8 +34,8 @@ class Nav extends Component {
             <option value="johndoe">John Doe</option>
           </select>
         </div>
-        <div className="header-contact ">
-          <p className="contact">
+        <div class="">
+          <p>
             <Link to="/">Questions</Link>
             <Link to="/Leaderboard">Leaderboard</Link>
             <span>User-name and Logout</span>

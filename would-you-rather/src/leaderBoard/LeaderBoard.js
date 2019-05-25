@@ -7,11 +7,11 @@ export class Leaderboard extends Component {
 
   render() {
     const {login, users} = this.props;
-    let isLoggedIn;
+    let isLoggedin;
     let usersAr;
 
-    if (login && login.isLoggedIn) {
-      isLoggedIn = login.isLoggedIn;
+    if (login && login.isLoggedin) {
+      isLoggedin = login.isLoggedin;
     }
 
     if (users && users.users) {
@@ -21,18 +21,18 @@ export class Leaderboard extends Component {
     }
 
     return (
-      <div className="">
+      <div class="">
         <h1 class="text-primary">Leaderboard</h1>
-        <div className="spacer-sm"></div>
-        <div className="row row-circle">
-          {isLoggedIn && (
+        <div class="spacer-sm"></div>
+        <div class="row row-circle">
+          {isLoggedin && (
             usersAr.map(user => {
               let numQuestionsAnswered = Object.keys(user.answers).length;
 
               return (
-                <div key={user.id} className="leader-circle">
+                <div key={user.id} class="leader-circle">
                   <h2>{user.name}</h2>
-                  <p><img src={user.avatarURL} alt="user avatar" className="avatar" /></p>
+                  <p><img src={user.avatarURL} alt="user avatar" class="avatar" /></p>
                   <p>{numQuestionsAnswered} Questions answered</p>
                   <p>{user.questions.length} Questions asked</p>
                 </div>
@@ -41,7 +41,7 @@ export class Leaderboard extends Component {
           )}
         </div>
 
-        {!isLoggedIn && (
+        {!isLoggedin && (
           <div>Sorry, you need to log in to view this page.</div>
         )}
 

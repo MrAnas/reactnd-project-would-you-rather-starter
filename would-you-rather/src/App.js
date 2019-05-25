@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import './App.css';
+
 import { receiveLogin, receiveLogout } from './redux/actions/loginActions';
+
+import AddQuestion from './questions/AddQuestion';
+import Leaderboard from './leaderboard/Leaderboard';
+import { getArFromDict } from './utilities/utilities';
+
 import { fetchUsers } from './redux/actions/usersActions';
 import { fetchQuestions } from './redux/actions/questionsActions';
 import Questions from './questions/Questions';
-import QuestionDetail from './questions/QuestionDetail';
-import AddQuestion from './questions/AddQuestion';
-import Leaderboard from './leaderboard/Leaderboard';
-import Error from './Error';
-import { getArFromDict } from './utilities/utilities';
+import Question from './questions/Question';
+
+
+import './App.css';
+
 
 export class App extends Component {
   constructor(props) {
@@ -20,7 +24,7 @@ export class App extends Component {
 
     this.state = {
       loginUser: '',
-      isLoggedIn: false
+      isLoggedin: false
     }
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -50,74 +54,75 @@ export class App extends Component {
   }
 
   render() {
-    let isLoggedIn;
-    let userDictionary;
-    let curUser;
+    let isLoggedin;
+    let usersList;
+    let currentUser;
     let userAr;
-    let questionDictionary;
+    let questionsList;
     let userAnswers;
     let userQuestions;
 
-    if (this.props.users && this.props.users.users) {
-      userDictionary = this.props.users.users;
-      userAr = getArFromDict(userDictionary);
+    if (this.props.users
+       &&
+        this.props.users.users) {
+      usersList = this.props.users.users;
+      userAr = getArFromDict(usersList);
     }
 
-    // if user logged in, get user name and user questions
+    // in case of Login
     if (this.props.login) {
-      isLoggedIn = this.props.login['isLoggedIn'];
-      if (isLoggedIn) {
+      isLoggedin = this.props.login['isLoggedin'];
+      if (isLoggedin) {
         let loggedInUid = this.state['loginUser'];
-        if (userDictionary) {
-          curUser = userDictionary[loggedInUid]['name'];
+        if (usersList) {
+          currentUser = usersList[loggedInUid]['name'];
         }
         if (this.props.questions && this.props.questions.questions) {
-          questionDictionary = this.props.questions.questions;
-          userAnswers = userDictionary[loggedInUid]['answers'];
-          userQuestions = userDictionary[loggedInUid]['questions'];
+          questionsList = this.props.questions.questions;
+          userAnswers = usersList[loggedInUid]['answers'];
+          userQuestions = usersList[loggedInUid]['questions'];
         }
       }
     }
 
     return (
-      <Router>
-        <div className="App d-flex">
-          <nav className="navbar d-flex flex-column navbar-expand-lg navbar-light bg-primary">
-            <Link to="/" className="navbar-brand header-main">WOULD YOU RATHER</Link>
-
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav d-flex flex-column mr-auto">
-                <li className="nav-item">
-                  <Link to="/" className="nav-link">Questions</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/add" className="nav-link">New Question</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/Leaderboard" className="nav-link">Leader Board</Link>
-                </li>
-
-                {isLoggedIn === false && (
-                  <li className="nav-item">
+      <BrowserRouter>
+        <div class="App d-flex">
+          <nav class="navbar d-flex flex-column navbar-expand-lg navbar-light bg-primary">
+            <Link to="/" class="navbar-brand header-main">WOULD YOU RATHER</Link>
+            {isLoggedin === false && ( 
+              <li> 
                     <select value={this.state.loginUser} 
                       onChange={this.onChangeHandler} name="loginUser"
-                      className="select-login">
-
+                      class="select-login">
                       <option value="">Login</option>
                       {userAr.map(user => {
                         return (<option value={user["id"]} key={user["id"]}>{user["name"]}</option>)
                       })}
                     </select>
-                  </li>
+                    </li>
                 )}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-                {isLoggedIn === true && (
-                  <li className="nav-item">
-                    <Link to="/" onClick={this.logout} className="nav-link">Logout {curUser}</Link>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav d-flex flex-column mr-auto">
+                <li class="nav-item">
+                  <Link to="/" class="nav-link">Home</Link>
+                </li>
+                <li class="nav-item">
+                  <Link to="/add" class="nav-link">Add Question</Link>
+                </li>
+                <li class="nav-item">
+                  <Link to="/Leaderboard" class="nav-link">Leaderboard</Link>
+                </li>
+
+                
+
+                {isLoggedin === true && (
+                  <li class="nav-item">
+                    <Link to="/" onClick={this.logout} class="nav-link">Logout {currentUser}</Link>
                   </li>
                 )}
               </ul>
@@ -125,17 +130,17 @@ export class App extends Component {
           </nav>
 
 
-          <main className="flex-grow-1 container">
+          <main class="flex-grow-1 container">
             <Route exact path="/" render={() => (
-                <Questions isLoggedIn={isLoggedIn} 
+                <Questions isLoggedin={isLoggedin} 
                   userQuestions={userQuestions} 
                   userAnswers={userAnswers}
-                  questions={questionDictionary}
+                  questions={questionsList}
                 />
               )}
             />
             <Route exact path="/questions/:question_id" render={({match}) => (
-                <QuestionDetail match={match} userDictionary={userDictionary} />
+                <Question match={match} usersList={usersList} />
               )}
             />
             <Route exact path="/add" render={() => (
@@ -146,14 +151,11 @@ export class App extends Component {
                 <Leaderboard />
               )}
             />
-            <Route exact path="/404" render={() => (
-                <Error />
-              )}
-            />
+            
           </main>
 
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

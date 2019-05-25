@@ -24,7 +24,7 @@ class Questions extends Component {
   }
 
   render() {
-    const {userAnswers, isLoggedIn, questions} = this.props;
+    const {userAnswers, isLoggedin, questions} = this.props;
     let questionsArSorted;
     let questionsAr;
 
@@ -59,9 +59,9 @@ class Questions extends Component {
     }
 
     return (
-      <div className="">
+      <div class="">
         <h1 class="text-primary mb-2">Questions</h1>
-        {isLoggedIn && (
+        {isLoggedin && (
           <div>
             <label> 
               <select value={this.state.loginUser} onChange={this.onChangeHandler} name="questionType">
@@ -77,14 +77,14 @@ class Questions extends Component {
               let link = `/questions/${qid}`
               return (
                 <div key={qid}>
-                  <h2><Link to={link} className="question-list">Would You Rather: {prettyQuestion}</Link></h2>
+                  <h2><Link to={link} class="question-list">Would You Rather: {prettyQuestion}</Link></h2>
                 </div>
               )
             })}
           </div>
         )}
 
-        {!isLoggedIn && (
+        {!isLoggedin && (
           <div>Sorry, you need to log in to view questions.</div>
         )}
 

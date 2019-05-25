@@ -5,7 +5,7 @@ export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT'
 export function receiveLogin(userId) {
   return {
     type: RECEIVE_LOGIN,
-    isLoggedIn: true,
+    isLoggedin: true,
     loggedInId: userId
   }
 }
@@ -13,7 +13,7 @@ export function receiveLogin(userId) {
 export function receiveLogout() {
   return {
     type: RECEIVE_LOGOUT,
-    isLoggedIn: false,
+    isLoggedin: false,
     loggedInId: null
   }
 }

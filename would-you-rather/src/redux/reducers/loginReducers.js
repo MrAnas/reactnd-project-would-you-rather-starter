@@ -1,7 +1,7 @@
 import { RECEIVE_LOGIN, RECEIVE_LOGOUT } from '../actions/loginActions';
 
 const initStateLogin = {
-  isLoggedIn: false,
+  isLoggedin: false,
   loggedInId: null,
 }
 
@@ -10,13 +10,13 @@ export function login(state = initStateLogin, action) {
     case RECEIVE_LOGIN:
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn,
+        isLoggedin: action.isLoggedin,
         loggedInId: action.loggedInId,
       }
     case RECEIVE_LOGOUT:
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn,
+        isLoggedin: action.isLoggedin,
         loggedInId: action.loggedInId,
       }
     default:

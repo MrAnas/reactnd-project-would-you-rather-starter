@@ -42,25 +42,25 @@ export class AddQuestion extends Component {
 
   render() {
     const {login} = this.props;
-    let isLoggedIn;
+    let isLoggedin;
     let loggedInId;
 
-    if (login && login.isLoggedIn) {
-      isLoggedIn = login.isLoggedIn;
+    if (login && login.isLoggedin) {
+      isLoggedin = login.isLoggedin;
       loggedInId = login.loggedInId;
     }
 
     return (
-      <div className="">
+      <div class="">
         <h1 class="text-primary">Add a Question</h1>
 
-        {isLoggedIn && (
-          <form className="question-form">
-            <input type="text" className="input-text" name="optionOne" onChange={this.onChange} 
+        {isLoggedin && (
+          <form class="question-form">
+            <input type="text" class="input-text" name="optionOne" onChange={this.onChange} 
               placeholder="Option 1"
             />
             <br />
-            <input type="text" className="input-text" name="optionTwo" onChange={this.onChange}
+            <input type="text" class="input-text" name="optionTwo" onChange={this.onChange}
               placeholder="Option 2"
             />
             <br />
@@ -68,7 +68,7 @@ export class AddQuestion extends Component {
           </form>
         )}
 
-        {!isLoggedIn && (
+        {!isLoggedin && (
           <div>Sorry, you need to log in to add a question.</div>
         )}
 
