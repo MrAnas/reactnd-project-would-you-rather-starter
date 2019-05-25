@@ -16,6 +16,7 @@ import Question from './questions/Question';
 
 
 import './App.css';
+import NotFound from './NotFound';
 
 
 export class App extends Component {
@@ -105,6 +106,7 @@ export class App extends Component {
               <span class="navbar-toggler-icon"></span>
             </button>
 
+                      
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav d-flex flex-column mr-auto">
                 <li class="nav-item">
@@ -121,7 +123,7 @@ export class App extends Component {
 
                 {isLoggedin === true && (
                   <li class="nav-item">
-                    <Link to="/" onClick={this.logout} class="nav-link">Logout</Link>
+                    <Link to="/" onClick={this.logout} class="nav-link">Logout {currentUser}</Link>
                   </li>
                 )}
               </ul>
@@ -148,6 +150,10 @@ export class App extends Component {
             />
             <Route exact path="/Leaderboard" render={() => (
                 <Leaderboard />
+              )}
+            />
+            <Route exact path="/404" render={() => (
+                <NotFound />
               )}
             />
             
