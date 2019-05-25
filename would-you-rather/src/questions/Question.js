@@ -18,18 +18,16 @@ export class Question extends Component {
   }
 
   componentDidMount() {
-    // making BE request to support user entering the url manually into browser
     this.props.fetchQuestions();
   }
 
-  onClickHandler(uid, qid, answer) {
-    console.log('answer: ' + answer);
-    this.props.updateAnswer(uid, qid, answer);
+  onClickHandler(userId, questionId, answer) {
+    this.props.updateAnswer(userId, questionId, answer);
   }
 
   render() {
-    const {login, questions, match, usersList} = this.props;
-    const qid = match.params.question_id;
+    const { login, questions, match, usersList } = this.props;
+    const questionId = match.params.question_id;
     let isLoggedin;
     let loginId;
     let question;
@@ -41,7 +39,6 @@ export class Question extends Component {
     let secondOptionText;
     let secondOptionVotes;
     let secondOptionVotePercent;
-    let avatarUrl = '';
     let userAnswer;
     let questionClass1 = 'question-answered'
     let questionClass2 = 'question-answered'
@@ -52,7 +49,7 @@ export class Question extends Component {
     }
 
     if (questions && questions.questions) {
-      question = questions.questions[qid];
+      question = questions.questions[questionId];
       if (question) {
         firstOptionText = question['optionOne']['text'];
         firstOptionVotes = question['optionOne']['votes'].length;
@@ -60,20 +57,16 @@ export class Question extends Component {
         secondOptionText = question['optionTwo']['text'];
         secondOptionVotes = question['optionTwo']['votes'].length;
         secondOptionVotePercent = getPercentVoted(secondOptionVotes, totalUsers);
-        let authorId = question['author']
-        if (usersList[authorId]) {
-          avatarUrl = usersList[authorId]['avatarURL'];
-        }
+
       }
     }
 
     if (isLoggedin && question) {
       let userAnsweredQuestions = Object.keys(usersList[loginId]['answers']);
-      if (userAnsweredQuestions.indexOf(qid) > -1) {
+      if (userAnsweredQuestions.indexOf(questionId) > -1) {
         questionAnswered = true;
       }
-      userAnswer = usersList[loginId]['answers'][qid];
-      console.log('userAnswer: ' + userAnswer)
+      userAnswer = usersList[loginId]['answers'][questionId];
       if (userAnswer === 'optionOne') {
         questionClass1 = "question-answered user-selected"
       }
@@ -85,22 +78,33 @@ export class Question extends Component {
     return (
       <div class="">
         {isLoggedin && questionAnswered && (
-          <div>
-            <h1>Users Answered</h1>
-            <p><img src={avatarUrl} alt="user avatar" class="avatar" /></p>
-            <div class="row">
-              <div class={questionClass1}>
-                <p>1: {firstOptionText}</p>
-                <div class="row row-circle">
-                  <div class="vote-circle">{firstOptionVotes} votes</div>
-                  <div class="vote-circle">{firstOptionVotePercent} % voted</div>
+          <div class="row">
+            <div className="col-md-12">
+              <h1 class="text-primary">Answers</h1>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class={questionClass1}>
+                    <h2 class="mb-4">{firstOptionText}</h2>
+                    <div class="">
+                      <p><div><b>Number of Voters:</b> {firstOptionVotes} </div></p>
+                      <p><div><b>Percentage:</b> {firstOptionVotePercent}% </div></p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class={questionClass2}>
-                <p>2: {secondOptionText}</p>
-                <div class="row row-circle">
-                  <div class="vote-circle">{secondOptionVotes} votes</div>
-                  <div class="vote-circle">{secondOptionVotePercent} % voted</div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class={questionClass2}>
+                    <h2 class="mb-4">{secondOptionText}</h2>
+                    <div class="">
+                    <p><div><b>Number of Voters:</b> {secondOptionVotes} </div></p>
+                    <p><div><b>Percentage:</b> {secondOptionVotePercent}% </div></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,11 +112,27 @@ export class Question extends Component {
         )}
 
         {isLoggedin && !questionAnswered && (
-          <div>
-            <h1><img src={avatarUrl} alt="user avatar" class="avatar" /> Would You Rather?</h1>
-            <div class="row">
-              <p id="optionOne" class="option" onClick={(ev) => this.onClickHandler(loginId, qid, ev.target.id)}>1: {firstOptionText}</p>
-              <p id="optionTwo" class="option" onClick={(ev) => this.onClickHandler(loginId, qid, ev.target.id)}>2: {secondOptionText}</p>
+
+          <div class="row">
+            <div className="col-md-12">
+              <h1>Would You Rather?</h1>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Option One </h5>
+                  <p id="optionOne" class="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{firstOptionText}</p>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Option Two</h5>
+                  <p id="optionTwo" class="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{secondOptionText}</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -140,5 +160,4 @@ function mapStateToProps({ login, questions }) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchQuestions, updateAnswer }, dispatch);
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Question);

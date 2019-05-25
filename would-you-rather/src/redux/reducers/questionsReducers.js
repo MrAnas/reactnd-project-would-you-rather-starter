@@ -30,7 +30,7 @@ export function questions(state = initStateQuestions, action) {
         isRetrieving: action.isRetrieving,
       }
     case RECEIVE_ANSWER_UPDATE:
-      // TODO 041118 test this worked
+
       return {
         ...state,
         isRetrieving: action.isRetrieving,

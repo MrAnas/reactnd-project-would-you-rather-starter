@@ -1,4 +1,3 @@
-// sync actions for login
 export const RECEIVE_LOGIN = 'RECEIVE_LOGIN'
 export const RECEIVE_LOGOUT = 'RECEIVE_LOGOUT'
 

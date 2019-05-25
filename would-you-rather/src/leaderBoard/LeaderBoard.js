@@ -15,7 +15,6 @@ export class Leaderboard extends Component {
     if (users && users.users) {
       usersAr = getArFromDict(users.users)
       usersAr = sortByAnswersCount(usersAr);
-      console.log('usersAr: ' + JSON.stringify(usersAr));
     }
 
 
@@ -40,8 +39,8 @@ export class Leaderboard extends Component {
                     <img class="mr-3" src={user.avatarURL} alt="user" />
                     <div class="media-body">
                       <h5 class="mt-0 mb-1">{user.name}</h5>
-                      <p>{numQuestionsAnswered} answered Questions </p>
-                      <p>{user.questions.length} asked Questions </p>
+                      <p>{numQuestionsAnswered} Answered Questions </p>
+                      <p>{user.questions.length} Asked Questions </p>
                     </div>
                   </li>
                     )

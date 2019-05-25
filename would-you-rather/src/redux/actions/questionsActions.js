@@ -1,6 +1,5 @@
 import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../../_DATA';
 
-// sync actions for getting questions
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 
@@ -37,7 +36,7 @@ export function requestAnswerUpdate() {
 }
 
 export function receiveAnswerUpdate(authedUser, qid, answer) {
-  console.log('authedUser: ' + authedUser);
+
 
   return {
     type: RECEIVE_ANSWER_UPDATE,

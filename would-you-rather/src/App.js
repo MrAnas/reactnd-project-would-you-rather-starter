@@ -42,7 +42,7 @@ export class App extends Component {
     stateChange[ev.target.name] = value;
     this.setState(stateChange, function() {
       if (this.state.loginUser.length) {
-        // change state to logged in
+
         this.props.receiveLogin(this.state.loginUser);
       }
     });
@@ -69,7 +69,6 @@ export class App extends Component {
       userAr = getArFromDict(usersList);
     }
 
-    // in case of Login
     if (this.props.login) {
       isLoggedin = this.props.login['isLoggedin'];
       if (isLoggedin) {

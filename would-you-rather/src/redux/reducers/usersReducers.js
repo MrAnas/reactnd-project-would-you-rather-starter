@@ -19,7 +19,7 @@ export function users(state = initStateUsers, action) {
         users: action.users,
       }
     case RECEIVE_ANSWER_UPDATE:
-      // TODO test 041118 that this worked
+
       return {
         ...state,
         users: {
