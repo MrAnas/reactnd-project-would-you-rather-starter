@@ -31,16 +31,16 @@ export class Question extends Component {
     const {login, questions, match, userDictionary} = this.props;
     const qid = match.params.question_id;
     let isLoggedin;
-    let loggedInId;
+    let loginId;
     let question;
     let questionAnswered = false;
     let totalUsers = Object.keys(userDictionary).length;
-    let option1Text;
-    let option1Votes;
-    let option1VotePercent;
-    let option2Text;
-    let option2Votes;
-    let option2VotePercent;
+    let firstOptionText;
+    let firstOptionVotes;
+    let firstOptionVotePercent;
+    let secondOptionText;
+    let secondOptionVotes;
+    let secondOptionVotePercent;
     let avatarUrl = '';
     let userAnswer;
     let questionClass1 = 'question-answered'
@@ -48,18 +48,18 @@ export class Question extends Component {
 
     if (login && login.isLoggedin) {
       isLoggedin = login.isLoggedin;
-      loggedInId = login.loggedInId;
+      loginId = login.loginId;
     }
 
     if (questions && questions.questions) {
       question = questions.questions[qid];
       if (question) {
-        option1Text = question['optionOne']['text'];
-        option1Votes = question['optionOne']['votes'].length;
-        option1VotePercent = getPercentVoted(option1Votes, totalUsers);
-        option2Text = question['optionTwo']['text'];
-        option2Votes = question['optionTwo']['votes'].length;
-        option2VotePercent = getPercentVoted(option2Votes, totalUsers);
+        firstOptionText = question['optionOne']['text'];
+        firstOptionVotes = question['optionOne']['votes'].length;
+        firstOptionVotePercent = getPercentVoted(firstOptionVotes, totalUsers);
+        secondOptionText = question['optionTwo']['text'];
+        secondOptionVotes = question['optionTwo']['votes'].length;
+        secondOptionVotePercent = getPercentVoted(secondOptionVotes, totalUsers);
         let authorId = question['author']
         if (userDictionary[authorId]) {
           avatarUrl = userDictionary[authorId]['avatarURL'];
@@ -68,11 +68,11 @@ export class Question extends Component {
     }
 
     if (isLoggedin && question) {
-      let userAnsweredQuestions = Object.keys(userDictionary[loggedInId]['answers']);
+      let userAnsweredQuestions = Object.keys(userDictionary[loginId]['answers']);
       if (userAnsweredQuestions.indexOf(qid) > -1) {
         questionAnswered = true;
       }
-      userAnswer = userDictionary[loggedInId]['answers'][qid];
+      userAnswer = userDictionary[loginId]['answers'][qid];
       console.log('userAnswer: ' + userAnswer)
       if (userAnswer === 'optionOne') {
         questionClass1 = "question-answered user-selected"
@@ -90,17 +90,17 @@ export class Question extends Component {
             <p><img src={avatarUrl} alt="user avatar" class="avatar" /></p>
             <div class="row">
               <div class={questionClass1}>
-                <p>1: {option1Text}</p>
+                <p>1: {firstOptionText}</p>
                 <div class="row row-circle">
-                  <div class="vote-circle">{option1Votes} votes</div>
-                  <div class="vote-circle">{option1VotePercent} % voted</div>
+                  <div class="vote-circle">{firstOptionVotes} votes</div>
+                  <div class="vote-circle">{firstOptionVotePercent} % voted</div>
                 </div>
               </div>
               <div class={questionClass2}>
-                <p>2: {option2Text}</p>
+                <p>2: {secondOptionText}</p>
                 <div class="row row-circle">
-                  <div class="vote-circle">{option2Votes} votes</div>
-                  <div class="vote-circle">{option2VotePercent} % voted</div>
+                  <div class="vote-circle">{secondOptionVotes} votes</div>
+                  <div class="vote-circle">{secondOptionVotePercent} % voted</div>
                 </div>
               </div>
             </div>
@@ -111,8 +111,8 @@ export class Question extends Component {
           <div>
             <h1><img src={avatarUrl} alt="user avatar" class="avatar" /> Would You Rather?</h1>
             <div class="row">
-              <p id="optionOne" class="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>1: {option1Text}</p>
-              <p id="optionTwo" class="option" onClick={(ev) => this.onClickHandler(loggedInId, qid, ev.target.id)}>2: {option2Text}</p>
+              <p id="optionOne" class="option" onClick={(ev) => this.onClickHandler(loginId, qid, ev.target.id)}>1: {firstOptionText}</p>
+              <p id="optionTwo" class="option" onClick={(ev) => this.onClickHandler(loginId, qid, ev.target.id)}>2: {secondOptionText}</p>
             </div>
           </div>
         )}

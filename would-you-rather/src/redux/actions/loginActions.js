@@ -6,7 +6,7 @@ export function receiveLogin(userId) {
   return {
     type: RECEIVE_LOGIN,
     isLoggedin: true,
-    loggedInId: userId
+    loginId: userId
   }
 }
 
@@ -14,6 +14,6 @@ export function receiveLogout() {
   return {
     type: RECEIVE_LOGOUT,
     isLoggedin: false,
-    loggedInId: null
+    loginId: null
   }
 }

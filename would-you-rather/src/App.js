@@ -122,7 +122,7 @@ export class App extends Component {
 
                 {isLoggedin === true && (
                   <li class="nav-item">
-                    <Link to="/" onClick={this.logout} class="nav-link">Logout {currentUser}</Link>
+                    <Link to="/" onClick={this.logout} class="nav-link">Logout</Link>
                   </li>
                 )}
               </ul>
@@ -130,7 +130,7 @@ export class App extends Component {
           </nav>
 
 
-          <main class="flex-grow-1 container">
+          <main class="flex-grow-1 container mt-5">
             <Route exact path="/" render={() => (
                 <Questions isLoggedin={isLoggedin} 
                   userQuestions={userQuestions} 

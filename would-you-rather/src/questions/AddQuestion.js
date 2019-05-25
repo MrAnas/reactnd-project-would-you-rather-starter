@@ -10,8 +10,8 @@ export class AddQuestion extends Component {
     super(props);
 
     this.state = {
-      optionOne: '',
-      optionTwo: '',
+      firstOption: '',
+      secondOption: '',
       pollSubmitted: false
     }
 
@@ -26,15 +26,15 @@ export class AddQuestion extends Component {
     this.setState(stateChange);
   }
 
-  onSubmit(ev, loggedInId) {
+  onSubmit(ev, loginId) {
     ev.preventDefault();
     let form = document.querySelector('.question-form')
     let question;
-    let optionOneText = this.state.optionOne;
-    let optionTwoText = this.state.optionTwo;
-    let author = loggedInId;
+    let firstOptionText = this.state.firstOption;
+    let secondOptionText = this.state.secondOption;
+    let author = loginId;
 
-    question = {optionOneText, optionTwoText, author}
+    question = {firstOptionText, secondOptionText, author}
     this.props.saveQuestion(question);
     form.reset();
     this.setState({pollSubmitted: true})
@@ -43,11 +43,11 @@ export class AddQuestion extends Component {
   render() {
     const {login} = this.props;
     let isLoggedin;
-    let loggedInId;
+    let loginId;
 
     if (login && login.isLoggedin) {
       isLoggedin = login.isLoggedin;
-      loggedInId = login.loggedInId;
+      loginId = login.loginId;
     }
 
     return (
@@ -56,20 +56,28 @@ export class AddQuestion extends Component {
 
         {isLoggedin && (
           <form class="question-form">
-            <input type="text" class="input-text" name="optionOne" onChange={this.onChange} 
+          <div class="form-group">
+          <label class="form-control-label">First Option</label>
+          <input type="text" class="form-control input-text" name="firstOption" onChange={this.onChange} 
               placeholder="Option 1"
             />
+              </div>
+            
             <br />
-            <input type="text" class="input-text" name="optionTwo" onChange={this.onChange}
+            <div class="form-group">
+
+            </div>
+            <label class="form-control-label">Second Option</label>
+            <input type="text" class="form-control input-text" name="secondOption" onChange={this.onChange}
               placeholder="Option 2"
             />
             <br />
-            <button value="save" onClick={(ev) => this.onSubmit(ev, loggedInId)}>Save</button>
+            <button class="btn btn-primary btn-block" value="save" onClick={(ev) => this.onSubmit(ev, loginId)}>Save</button>
           </form>
         )}
 
         {!isLoggedin && (
-          <div>Sorry, you need to log in to add a question.</div>
+          <div><h1 class="text-dark">You need to login to view this page</h1></div>
         )}
 
         {this.state.pollSubmitted && (

@@ -60,7 +60,7 @@ class Questions extends Component {
 
     return (
       <div class="">
-        <h1 class="text-primary mb-2">Questions</h1>
+        <h1 class="text-primary mb-2">Home</h1>
         {isLoggedin && (
           <div>
             <label> 
@@ -85,7 +85,7 @@ class Questions extends Component {
         )}
 
         {!isLoggedin && (
-          <div>Sorry, you need to log in to view questions.</div>
+          <div><h1 class="text-dark">Sorry, you need to log in to view questions.</h1></div>
         )}
 
       </div>

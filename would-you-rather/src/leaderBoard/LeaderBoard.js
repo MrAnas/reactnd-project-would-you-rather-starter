@@ -6,13 +6,11 @@ import { getArFromDict, sortByAnswersCount } from '../utilities/utilities';
 export class Leaderboard extends Component {
 
   render() {
-    const {login, users} = this.props;
+    const { login, users } = this.props;
     let isLoggedin;
     let usersAr;
 
-    if (login && login.isLoggedin) {
-      isLoggedin = login.isLoggedin;
-    }
+    
 
     if (users && users.users) {
       usersAr = getArFromDict(users.users)
@@ -20,29 +18,40 @@ export class Leaderboard extends Component {
       console.log('usersAr: ' + JSON.stringify(usersAr));
     }
 
+
+    if (login && login.isLoggedin) {
+      isLoggedin = login.isLoggedin;
+    }
     return (
       <div class="">
         <h1 class="text-primary">Leaderboard</h1>
         <div class="spacer-sm"></div>
         <div class="row row-circle">
-          {isLoggedin && (
-            usersAr.map(user => {
-              let numQuestionsAnswered = Object.keys(user.answers).length;
+          <ul class="list-unstyled w-100">
+            {isLoggedin && (
 
-              return (
-                <div key={user.id} class="leader-circle">
-                  <h2>{user.name}</h2>
-                  <p><img src={user.avatarURL} alt="user avatar" class="avatar" /></p>
-                  <p>{numQuestionsAnswered} Questions answered</p>
-                  <p>{user.questions.length} Questions asked</p>
-                </div>
-              )
-            })
-          )}
+              usersAr.map(user => {
+                let numQuestionsAnswered = Object.keys(user.answers).length;
+
+                return (
+
+
+                  <li class="media border rounded border-secondary mb-3 p-3">
+                    <img class="mr-3" src={user.avatarURL} alt="user" />
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-1">{user.name}</h5>
+                      <p>{numQuestionsAnswered} answered Questions </p>
+                      <p>{user.questions.length} asked Questions </p>
+                    </div>
+                  </li>
+                    )
+              })
+            )}
+          </ul>
         </div>
 
         {!isLoggedin && (
-          <div>Sorry, you need to log in to view this page.</div>
+          <div><h1>You need to login to view this page</h1></div>
         )}
 
       </div>
@@ -56,5 +65,4 @@ function mapStateToProps({ login, users }) {
     users,
   }
 }
-
 export default connect(mapStateToProps)(Leaderboard);
