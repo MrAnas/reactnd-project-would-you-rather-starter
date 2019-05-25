@@ -36,7 +36,7 @@ export class Leaderboard extends Component {
 
 
                   <li class="media border rounded border-secondary mb-3 p-3">
-                    <img class="mr-3" src={user.avatarURL} alt="user" />
+                    <img width="80" a="mx-3" src={user.avatarURL} alt="user" />
                     <div class="media-body">
                       <h5 class="mt-0 mb-1">{user.name}</h5>
                       <p>{numQuestionsAnswered} Answered Questions </p>
