@@ -28,34 +28,30 @@ class Questions extends Component {
     let questionsArSorted;
     let questionsAr;
 
-    // REFACTOR revisit all the if logic; are they necessary?
     if (questions) {
       questionsAr = getArFromDict(questions);
       questionsArSorted = sortByPropertyDesc(questionsAr, 'timestamp');
     }
-    // list of question id's
-    let questionsDisplay = [];
-    let questionsDisplaySorted = [];
 
-    // filter for unanswered questions
+    let questionsList = [];
+    let questionsListSorted = [];
+
     if (userAnswers && questions && this.state.questionType === "unanswered") {
-      questionsDisplay = getUnansweredQuestions(userAnswers, questions);
+      questionsList = getUnansweredQuestions(userAnswers, questions);
     }
 
-    // filter for answered questions
     if (userAnswers && questions && this.state.questionType === "answered") {
-      questionsDisplay = Object.keys(userAnswers);
+      questionsList = Object.keys(userAnswers);
     }
 
-    // TODO 041018 sort the ar questionsDisplay using questionsArSorted
-    if (questionsDisplay && questionsArSorted) {
-      let qidRecentToOld = questionsArSorted.map(obj => obj['id']);
-      qidRecentToOld.forEach(qid => {
-        if (questionsDisplay.indexOf(qid) > -1) {
-          questionsDisplaySorted.push(qid)
+    if (questionsList && questionsArSorted) {
+      let questionIdRecentToOld = questionsArSorted.map(obj => obj['id']);
+      questionIdRecentToOld.forEach(questionId => {
+        if (questionsList.indexOf(questionId) > -1) {
+          questionsListSorted.push(questionId)
         }
       })
-      questionsDisplay = questionsDisplaySorted;
+      questionsList = questionsListSorted;
     }
 
     return (
@@ -63,7 +59,7 @@ class Questions extends Component {
         <h1 class="text-primary mb-2">Home</h1>
         {isLoggedin && (
           <div>
-            <label> 
+            <label>  Please choose question type
               <select value={this.state.loginUser} onChange={this.onChangeHandler} name="questionType">
                 <option value="unanswered">Unanswered Questions</option>
                 <option value="answered">Answered Questions</option>
@@ -72,20 +68,22 @@ class Questions extends Component {
 
             <hr />
 
-            {questionsDisplay.map(qid => {
-              let prettyQuestion = getPrettyQuestion(qid, questions);
-              let link = `/questions/${qid}`
+            <ul>
+            {questionsList.map(questionId => {
+              let prettyQuestion = getPrettyQuestion(questionId, questions);
+              let link = `/questions/${questionId}`
               return (
-                <div key={qid}>
-                  <h2><Link to={link} class="question-list">Would You Rather: {prettyQuestion}</Link></h2>
-                </div>
+                <li key={questionId}>
+                  <span><Link to={link} class="question-list">Would You Rather: {prettyQuestion}</Link></span>
+                </li>
               )
             })}
+            </ul>
           </div>
         )}
 
         {!isLoggedin && (
-          <div><h1 class="text-dark">Sorry, you need to log in to view questions.</h1></div>
+          <div><h1 class="text-dark">You need to login to view this page</h1></div>
         )}
 
       </div>

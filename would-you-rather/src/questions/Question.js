@@ -28,13 +28,13 @@ export class Question extends Component {
   }
 
   render() {
-    const {login, questions, match, userDictionary} = this.props;
+    const {login, questions, match, usersList} = this.props;
     const qid = match.params.question_id;
     let isLoggedin;
     let loginId;
     let question;
     let questionAnswered = false;
-    let totalUsers = Object.keys(userDictionary).length;
+    let totalUsers = Object.keys(usersList).length;
     let firstOptionText;
     let firstOptionVotes;
     let firstOptionVotePercent;
@@ -61,18 +61,18 @@ export class Question extends Component {
         secondOptionVotes = question['optionTwo']['votes'].length;
         secondOptionVotePercent = getPercentVoted(secondOptionVotes, totalUsers);
         let authorId = question['author']
-        if (userDictionary[authorId]) {
-          avatarUrl = userDictionary[authorId]['avatarURL'];
+        if (usersList[authorId]) {
+          avatarUrl = usersList[authorId]['avatarURL'];
         }
       }
     }
 
     if (isLoggedin && question) {
-      let userAnsweredQuestions = Object.keys(userDictionary[loginId]['answers']);
+      let userAnsweredQuestions = Object.keys(usersList[loginId]['answers']);
       if (userAnsweredQuestions.indexOf(qid) > -1) {
         questionAnswered = true;
       }
-      userAnswer = userDictionary[loginId]['answers'][qid];
+      userAnswer = usersList[loginId]['answers'][qid];
       console.log('userAnswer: ' + userAnswer)
       if (userAnswer === 'optionOne') {
         questionClass1 = "question-answered user-selected"
@@ -122,7 +122,7 @@ export class Question extends Component {
         )}
 
         {!isLoggedin && (
-          <div>Sorry, you need to log in to view this question.</div>
+          <div><h1>You need to login to view the question.</h1></div>
         )}
 
       </div>
