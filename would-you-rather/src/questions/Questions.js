@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import { getArFromDict, sortByPropertyDesc, getPrettyQuestion,
-  getUnansweredQuestions } from '../utilities/utilities';
+  getUnansweredQuestions } from '../utils/utils';
 
 class Questions extends Component {
   constructor(props) {

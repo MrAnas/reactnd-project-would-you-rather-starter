@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App.css';
-import { getArFromDict, sortByAnswersCount } from '../utilities/utilities';
+import { getArFromDict, sortByAnswersCount } from '../utils/utils';
 
 export class Leaderboard extends Component {
 

@@ -7,7 +7,7 @@ import { receiveLogin, receiveLogout } from './redux/actions/loginActions';
 
 import AddQuestion from './questions/AddQuestion';
 import Leaderboard from './leaderboard/Leaderboard';
-import { getArFromDict } from './utilities/utilities';
+import { getArFromDict } from './utils/utils';
 
 import { fetchUsers } from './redux/actions/usersActions';
 import { fetchQuestions } from './redux/actions/questionsActions';

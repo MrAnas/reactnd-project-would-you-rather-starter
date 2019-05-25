@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../App.css';
 import { fetchQuestions, updateAnswer } from '../redux/actions/questionsActions';
-import { getPercentVoted } from '../utilities/utilities';
+import { getPercentVoted } from '../utils/utils';
 
 
 export class Question extends Component {
