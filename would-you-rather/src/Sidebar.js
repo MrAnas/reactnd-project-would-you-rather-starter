@@ -24,9 +24,9 @@ class Nav extends Component {
   render() {
 
     return (
-      <div class="header title">
-        <div class="header-main">
-          <h2><Link to="/" class="header-main">Would You Rather</Link></h2>
+      <div className="header title">
+        <div className="header-main">
+          <h2><Link to="/" className="header-main">Would You Rather</Link></h2>
           <select value={this.state.loginUser} onChange={this.onChangeHandler} name="loginUser">
             <option value="">Login</option>
             <option value="sarahedo">Sarah Edo</option>
@@ -34,7 +34,7 @@ class Nav extends Component {
             <option value="johndoe">John Doe</option>
           </select>
         </div>
-        <div class="">
+        <div className="">
           <p>
             <Link to="/">Questions</Link>
             <Link to="/Leaderboard">Leaderboard</Link>

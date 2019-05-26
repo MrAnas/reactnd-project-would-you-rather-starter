@@ -22,11 +22,11 @@ export class Leaderboard extends Component {
       isLoggedin = login.isLoggedin;
     }
     return (
-      <div class="">
-        <h1 class="text-primary">Leaderboard</h1>
-        <div class="spacer-sm"></div>
-        <div class="row row-circle">
-          <ul class="list-unstyled w-100">
+      <div className="">
+        <h1 className="text-primary">Leaderboard</h1>
+        <div className="spacer-sm"></div>
+        <div className="row row-circle">
+          <ul className="list-unstyled w-100">
             {isLoggedin && (
 
               usersAr.map(user => {
@@ -35,10 +35,10 @@ export class Leaderboard extends Component {
                 return (
 
 
-                  <li class="media border rounded border-secondary mb-3 p-3">
+                  <li className="media border rounded border-secondary mb-3 p-3">
                     <img width="80" a="mx-3" src={user.avatarURL} alt="user" />
-                    <div class="media-body">
-                      <h5 class="mt-0 mb-1">{user.name}</h5>
+                    <div className="media-body">
+                      <h5 className="mt-0 mb-1">{user.name}</h5>
                       <p>{numQuestionsAnswered} Answered Questions </p>
                       <p>{user.questions.length} Asked Questions </p>
                     </div>

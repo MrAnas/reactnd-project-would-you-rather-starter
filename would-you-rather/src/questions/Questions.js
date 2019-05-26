@@ -55,8 +55,8 @@ class Questions extends Component {
     }
 
     return (
-      <div class="">
-        <h1 class="text-primary mb-2">Home</h1>
+      <div className="">
+        <h1 className="text-primary mb-2">Home</h1>
         {isLoggedin && (
           <div>
             <label>  Please choose question type
@@ -74,7 +74,7 @@ class Questions extends Component {
               let link = `/questions/${questionId}`
               return (
                 <li key={questionId}>
-                  <span><Link to={link} class="question-list">Would You Rather: {prettyQuestion}</Link></span>
+                  <span><Link to={link} className="question-list">Would You Rather: {prettyQuestion}</Link></span>
                 </li>
               )
             })}
@@ -83,7 +83,7 @@ class Questions extends Component {
         )}
 
         {!isLoggedin && (
-          <div><h1 class="text-dark">You need to login to view this page</h1></div>
+          <div><h1 className="text-dark">You need to login to view this page</h1></div>
         )}
 
       </div>

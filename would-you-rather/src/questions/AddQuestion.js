@@ -51,33 +51,33 @@ export class AddQuestion extends Component {
     }
 
     return (
-      <div class="">
-        <h1 class="text-primary">Add a Question</h1>
+      <div className="">
+        <h1 className="text-primary">Add a Question</h1>
 
         {isLoggedin && (
-          <form class="question-form">
-          <div class="form-group">
-          <label class="form-control-label">First Option</label>
-          <input type="text" class="form-control input-text" name="optionOne" onChange={this.onChange} 
+          <form className="question-form">
+          <div className="form-group">
+          <label className="form-control-label">First Option</label>
+          <input type="text" className="form-control input-text" name="optionOne" onChange={this.onChange} 
               placeholder="Option 1"
             />
               </div>
             
             <br />
-            <div class="form-group">
+            <div className="form-group">
 
             </div>
-            <label class="form-control-label">Second Option</label>
-            <input type="text" class="form-control input-text" name="optionTwo" onChange={this.onChange}
+            <label className="form-control-label">Second Option</label>
+            <input type="text" className="form-control input-text" name="optionTwo" onChange={this.onChange}
               placeholder="Option 2"
             />
             <br />
-            <button class="btn btn-primary btn-block" value="save" onClick={(ev) => this.onSubmit(ev, loginId)}>Save</button>
+            <button className="btn btn-primary btn-block" value="save" onClick={(ev) => this.onSubmit(ev, loginId)}>Save</button>
           </form>
         )}
 
         {!isLoggedin && (
-          <div><h1 class="text-dark">You need to login to view this page</h1></div>
+          <div><h1 className="text-dark">You need to login to view this page</h1></div>
         )}
 
         {this.state.pollSubmitted && (

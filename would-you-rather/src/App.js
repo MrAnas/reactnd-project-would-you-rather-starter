@@ -87,14 +87,14 @@ export class App extends Component {
 
     return (
       <BrowserRouter>
-        <div class="App d-flex">
-          <nav class="navbar d-flex flex-column navbar-expand-lg navbar-light bg-primary">
-            <Link to="/" class="navbar-brand header-main">WOULD YOU RATHER</Link>
+        <div className="App d-flex">
+          <nav className="navbar d-flex flex-column navbar-expand-lg navbar-light bg-primary">
+            <Link to="/" className="navbar-brand header-main">WOULD YOU RATHER</Link>
             {isLoggedin === false && ( 
               <li> 
                     <select value={this.state.loginUser} 
                       onChange={this.onChangeHandler} name="loginUser"
-                      class="select-login">
+                      className="select-login">
                       <option value="">Login</option>
                       {userAr.map(user => {
                         return (<option value={user["id"]} key={user["id"]}>{user["name"]}</option>)
@@ -102,28 +102,28 @@ export class App extends Component {
                     </select>
                     </li>
                 )}
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
             </button>
 
                       
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav d-flex flex-column mr-auto">
-                <li class="nav-item">
-                  <Link to="/" class="nav-link">Home</Link>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav d-flex flex-column mr-auto">
+                <li className="nav-item">
+                  <Link to="/" className="nav-link">Home</Link>
                 </li>
-                <li class="nav-item">
-                  <Link to="/add" class="nav-link">Add Question</Link>
+                <li className="nav-item">
+                  <Link to="/add" className="nav-link">Add Question</Link>
                 </li>
-                <li class="nav-item">
-                  <Link to="/Leaderboard" class="nav-link">Leaderboard</Link>
+                <li className="nav-item">
+                  <Link to="/Leaderboard" className="nav-link">Leaderboard</Link>
                 </li>
 
                 
 
                 {isLoggedin === true && (
-                  <li class="nav-item">
-                    <Link to="/" onClick={this.logout} class="nav-link">Logout {currentUser}</Link>
+                  <li className="nav-item">
+                    <Link to="/" onClick={this.logout} className="nav-link">Logout {currentUser}</Link>
                   </li>
                 )}
               </ul>
@@ -131,7 +131,7 @@ export class App extends Component {
           </nav>
 
 
-          <main class="flex-grow-1 container mt-5">
+          <main className="flex-grow-1 container mt-5">
             <Route exact path="/" render={() => (
                 <Questions isLoggedin={isLoggedin} 
                   userQuestions={userQuestions} 

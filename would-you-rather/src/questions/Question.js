@@ -96,18 +96,18 @@ export class Question extends Component {
     }
 
     return (
-      <div class="">
+      <div className="">
         {isLoggedin && questionAnswered && (
-          <div class="row">
+          <div className="row">
             <div className="col-md-12">
-              <h1 class="text-primary">Answers</h1>
+              <h1 className="text-primary">Answers</h1>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class={questionClass1}>
-                    <h2 class="mb-4">{firstOptionText}</h2>
-                    <div class="">
+            <div className="col-sm-6">
+              <div className="card">
+                <div className="card-body">
+                  <div className={questionClass1}>
+                    <h2 className="mb-4">{firstOptionText}</h2>
+                    <div className="">
                       <p><div><b>Number of Voters:</b> {firstOptionVotes} </div></p>
                       <p><div><b>Percentage:</b> {firstOptionVotePercent}% </div></p>
                     </div>
@@ -115,12 +115,12 @@ export class Question extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class={questionClass2}>
-                    <h2 class="mb-4">{secondOptionText}</h2>
-                    <div class="">
+            <div className="col-sm-6">
+              <div className="card">
+                <div className="card-body">
+                  <div className={questionClass2}>
+                    <h2 className="mb-4">{secondOptionText}</h2>
+                    <div className="">
                     <p><div><b>Number of Voters:</b> {secondOptionVotes} </div></p>
                     <p><div><b>Percentage:</b> {secondOptionVotePercent}% </div></p>
                     </div>
@@ -133,25 +133,25 @@ export class Question extends Component {
 
         {isLoggedin && !questionAnswered && (
 
-          <div class="row">
+          <div className="row">
             <div className="col-md-12">
               <h1>Would You Rather?</h1>
               <img src={avatarUrl} alt="avatar"/>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Option One </h5>
-                  <p id="optionOne" class="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{firstOptionText}</p>
+            <div className="col-sm-6">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Option One </h5>
+                  <p id="optionOne" className="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{firstOptionText}</p>
 
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Option Two</h5>
-                  <p id="optionTwo" class="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{secondOptionText}</p>
+            <div className="col-sm-6">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Option Two</h5>
+                  <p id="optionTwo" className="btn btn-primary" onClick={(ev) => this.onClickHandler(loginId, questionId, ev.target.id)}>{secondOptionText}</p>
                 </div>
               </div>
             </div>
