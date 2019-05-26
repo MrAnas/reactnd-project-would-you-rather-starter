@@ -10,8 +10,8 @@ export class AddQuestion extends Component {
     super(props);
 
     this.state = {
-      firstOption: '',
-      secondOption: '',
+      optionOne: '',
+      optionTwo: '',
       pollSubmitted: false
     }
 
@@ -30,11 +30,11 @@ export class AddQuestion extends Component {
     ev.preventDefault();
     let form = document.querySelector('.question-form')
     let question;
-    let firstOptionText = this.state.firstOption;
-    let secondOptionText = this.state.secondOption;
+    let optionOneText = this.state.optionOne;
+    let optionTwoText = this.state.optionTwo;
     let author = loginId;
 
-    question = {firstOptionText, secondOptionText, author}
+    question = {optionOneText, optionTwoText, author}
     this.props.saveQuestion(question);
     form.reset();
     this.setState({pollSubmitted: true})
@@ -58,7 +58,7 @@ export class AddQuestion extends Component {
           <form class="question-form">
           <div class="form-group">
           <label class="form-control-label">First Option</label>
-          <input type="text" class="form-control input-text" name="firstOption" onChange={this.onChange} 
+          <input type="text" class="form-control input-text" name="optionOne" onChange={this.onChange} 
               placeholder="Option 1"
             />
               </div>
@@ -68,7 +68,7 @@ export class AddQuestion extends Component {
 
             </div>
             <label class="form-control-label">Second Option</label>
-            <input type="text" class="form-control input-text" name="secondOption" onChange={this.onChange}
+            <input type="text" class="form-control input-text" name="optionTwo" onChange={this.onChange}
               placeholder="Option 2"
             />
             <br />

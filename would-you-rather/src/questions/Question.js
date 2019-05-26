@@ -39,6 +39,7 @@ export class Question extends Component {
     let secondOptionText;
     let secondOptionVotes;
     let secondOptionVotePercent;
+    let avatarUrl = '';
     let userAnswer;
     let questionClass1 = 'question-answered'
     let questionClass2 = 'question-answered'
@@ -57,6 +58,10 @@ export class Question extends Component {
         secondOptionText = question['optionTwo']['text'];
         secondOptionVotes = question['optionTwo']['votes'].length;
         secondOptionVotePercent = getPercentVoted(secondOptionVotes, totalUsers);
+        let authorId = question['author']
+        if (usersList[authorId]) {
+          avatarUrl = usersList[authorId]['avatarURL'];
+        }
 
       }
     }
@@ -72,6 +77,21 @@ export class Question extends Component {
       }
       if (userAnswer === 'optionTwo') {
         questionClass2 = "question-answered user-selected"
+      }
+    }
+
+    if (isLoggedin && question) {
+      let userAnsweredQuestions = Object.keys(usersList[loginId]['answers']);
+      if (userAnsweredQuestions.indexOf(questionId) > -1) {
+        questionAnswered = true;
+      }
+      userAnswer = usersList[loginId]['answers'][questionId];
+      console.log('userAnswer: ' + userAnswer)
+      if (userAnswer === 'optionOne') {
+        questionClass1 = "border border-primary"
+      }
+      if (userAnswer === 'optionTwo') {
+        questionClass2 = "border border-primary"
       }
     }
 
@@ -116,6 +136,7 @@ export class Question extends Component {
           <div class="row">
             <div className="col-md-12">
               <h1>Would You Rather?</h1>
+              <img src={avatarUrl} alt="avatar"/>
             </div>
             <div class="col-sm-6">
               <div class="card">

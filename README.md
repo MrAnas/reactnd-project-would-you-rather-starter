@@ -1,3 +1,8 @@
+# How To Run
+cd would-you-rather
+npm install
+npm start
+
 # Would You Rather Project
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
